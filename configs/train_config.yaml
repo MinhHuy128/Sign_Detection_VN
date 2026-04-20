@@ -1,0 +1,50 @@
+architecture:
+  auto_select: false
+  arch_selection_epochs: 10
+  candidates:
+    - name: "YOLOv11s"
+      pretrained: "yolo11s.pt"
+    - name: "YOLOv11m"
+      pretrained: "yolo11m.pt"
+  fallback: "yolo11s.pt"
+
+training:
+  epochs: 80
+  imgsz: 1280
+  batch: 8
+  amp: true
+  device: "auto"
+  workers: 4
+  optimizer: "AdamW"
+  lr0: 0.000164
+  momentum: 0.9
+  weight_decay: 0.0005
+  close_mosaic: 20
+  patience: 25
+  fliplr: 0.0
+  mosaic: 1.0
+  mixup: 0.1
+  copy_paste: 0.3
+
+augmentation:
+  use_albumentations: true
+
+mlflow:
+  tracking_uri: "mlruns/"
+  experiment_name: "RoadSense-AI-v2"
+  log_artifacts: true
+
+optuna:
+  enabled: false
+  n_trials: 20
+  metric: "metrics/mAP50"
+  direction: "maximize"
+  search_space:
+    lr0: [0.0001, 0.001]
+    weight_decay: [0.0001, 0.001]
+    mosaic: [0.5, 1.0]
+    copy_paste: [0.1, 0.5]
+
+dataset:
+  path: "datasets/vnts-merge-2/data.yaml"
+  sparse_path: "datasets/"

@@ -1,0 +1,31 @@
+model:
+  backend: "auto"
+  sign_model_trt:  "models/signs/best.engine"
+  sign_model_onnx: "models/signs/best.onnx"
+  sign_model_pt:   "models/signs/best.pt"
+  obstacle_model: ""
+  input_size: 1280
+  conf_detect: 0.4
+  conf_track: 0.55
+  device: "cuda"
+
+inference:
+  use_slicing: false
+  slice_interval: 5
+  slice_size: 640
+  overlap_ratio: 0.1
+
+display:
+  show_window: false
+  hud_enabled: true
+  language: "en"
+
+logging:
+  level: "INFO"
+  format: "json"
+  profile_csv: false
+
+output:
+  save_video: true
+  output_path: "runs/inference/output.mp4"
+  verbose: false
