@@ -1,0 +1,16 @@
+ultralytics
+supervision
+mlflow
+optuna
+dvc
+albumentations
+onnx
+onnxruntime-gpu
+opencv-python
+numpy
+pandas
+matplotlib
+seaborn
+scipy
+torch
+torchvision
